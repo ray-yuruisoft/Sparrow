@@ -47,8 +47,8 @@ namespace MixLibrary
                 }
                 catch (Exception ex)
                 {
-                    //LogUtil.Log(ex.Message);
-                    //LogUtil.Log(ex.StackTrace);
+                    LogUtil.Log(ex.Message);
+                    LogUtil.Log(ex.StackTrace);
                 }
             }
 

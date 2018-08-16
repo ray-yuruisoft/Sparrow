@@ -58,7 +58,6 @@ namespace MixLibrary
                 }
                 catch (Exception)
                 {
-                    
                 }
             }
 
@@ -70,7 +69,7 @@ namespace MixLibrary
                 }
                 catch (Exception)
                 {
-                    
+
                 }
             }
 
@@ -200,7 +199,7 @@ namespace MixLibrary
                     bool ping = conn.Ping();
                     if (!ping)
                         Restart();
-                            
+
                     return RealExecuteReader(name, paras);
                 }
                 catch (Exception ex)
@@ -230,20 +229,20 @@ namespace MixLibrary
                 dbLink.Start(connectStr);
             }
 
-            
+
             Console.WriteLine("启动数据库连接池（{0}个连接）", dbLinkCount);
         }
 
         public void Stop()
         {
-            foreach(var dbLink in dbLinks)
+            foreach (var dbLink in dbLinks)
             {
                 dbLink.Stop();
             }
         }
         public void SetPrepareCommand(string name, string sql, params MySqlDbType[] paraTypes)
         {
-            foreach(var dbLink in dbLinks)
+            foreach (var dbLink in dbLinks)
             {
                 dbLink.SetPrepareCommand(name, sql, paraTypes);
             }
