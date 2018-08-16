@@ -6,22 +6,38 @@ using System.Threading.Tasks;
 using System.Threading;
 using System.Runtime;
 using System.Xml;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using MixLibrary;
-using System.Runtime.InteropServices;
+using MySql.Data.MySqlClient;
 
-namespace GameServer
+namespace HallServer
 {
     public class Program
     {
-        public static int noTableWorkerCount = 32;
         public static TimerService timerSvc = new TimerService();
         public static WorkerManager workerMgr = new WorkerManager();
         public static DatabaseService dbSvc = new DatabaseService();
         public static DBHelper dbHelper = new DBHelper();
-        public static GameServer server = new GameServer();
+        public static HallServer server = new HallServer();
         public static ModuleManager moduleManager = new ModuleManager();
+
+        static Random rand = new Random();
+        static void TestProb()
+        {
+            int[] counts = new int[2];
+            int times = 10000;
+
+            for (int i = 0; i < times; i++)
+            {
+                if (rand.Next(10000) < 1000)
+                    counts[0]++;
+                else
+                    counts[1]++;
+            }
+
+            Console.WriteLine("{0:F2} - {1:F2}", 
+                counts[0] / (double)times, 
+                counts[1] / (double)times);
+        }
 
         public static void Main(string[] args)
         {
@@ -38,12 +54,10 @@ namespace GameServer
             if (!config.Load())
                 return;
 
-            int workerCount = config.workerCount + noTableWorkerCount;
-
-            dbSvc.Start(config.dbConnectStr, workerCount);
+            dbSvc.Start(config.dbConnectStr, config.workerCount + 1);
             dbHelper.Start();
-            workerMgr.Start(workerCount);
-            if(!server.Start(config.serverPort, 10000))
+            workerMgr.Start(config.workerCount);
+            if (!server.Start(config.serverPort, 10000))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("端口：{0}被占用，请按任意键退出", config.serverPort);
@@ -54,22 +68,17 @@ namespace GameServer
             moduleManager.Start();
             timerSvc.Start();
 
-            Console.WriteLine("游戏服务器启动完毕，端口：{0}", config.serverPort);
-
-            //Thread thread = new Thread(ClearMemoryThreadProc);
-            //thread.IsBackground = true;
-            //thread.Start();
+            Console.WriteLine("大厅服务器启动完毕，端口：{0}", config.serverPort);
 
             while (true)
             {
                 var key = Console.ReadKey();
 
-                if (key.Key == ConsoleKey.S)
+                if(key.Key == ConsoleKey.S)
                 {
                     Console.WriteLine("");
                     Console.WriteLine("当前连接数：{0} 连接池存量：{1}",
                         server.connectNum, server.GetSessionPoolCount());
-                    Console.WriteLine("支持游戏：{0}", Configure.Inst.supportGames);
                 }
                 if (key.Key == ConsoleKey.T)
                 {
@@ -89,28 +98,6 @@ namespace GameServer
                 {
                     break;
                 }
-                if(key.Key == ConsoleKey.R)
-                {
-                    Console.WriteLine("");
-                    moduleManager.gameModule.LoadAllConfigs();
-                }
-                if (key.Key == ConsoleKey.D1)
-                {
-                    Console.WriteLine("");
-                    moduleManager.gameModule.SetAllGameIsShowInfo(true);
-                    Console.WriteLine("已打开游戏内信息显示");
-                }
-                if (key.Key == ConsoleKey.D2)
-                {
-                    Console.WriteLine("");
-                    moduleManager.gameModule.SetAllGameIsShowInfo(false);
-                    Console.WriteLine("已关闭游戏内信息显示");
-                }
-                //if(key.Key == ConsoleKey.W)
-                //{
-                //    dbHelper.LogPlayGame(@"D:\Work\ChessServers\bin\GameServer\Games\Br1", "test", "12312414", "阿拉丁", 0, 100, new JObject());
-                //    dbHelper.LogGame(@"D:\Work\ChessServers\bin\GameServer\Games\Br1", "test", "阿拉丁", 0, 100, new JObject());
-                //}
 
                 Thread.Sleep(100);
             }
@@ -122,21 +109,9 @@ namespace GameServer
             dbHelper.Stop();
             dbSvc.Stop();
         }
-
         private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             LogUtil.Log("捕获到全局异常：{0}", e.ExceptionObject);
-        }
-
-        private static void ClearMemoryThreadProc()
-        {
-            while (true)
-            {
-                GC.Collect();
-                GC.WaitForPendingFinalizers();
-
-                Thread.Sleep(5000);
-            }
         }
     }
 }

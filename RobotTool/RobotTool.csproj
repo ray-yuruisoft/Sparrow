@@ -7,11 +7,9 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.109" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameInterface\GameInterface.csproj" />
     <ProjectReference Include="..\MixLibrary\MixLibrary.csproj" />
   </ItemGroup>
 

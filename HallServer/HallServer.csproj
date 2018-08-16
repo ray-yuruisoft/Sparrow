@@ -6,12 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.12" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
-    <PackageReference Include="System.Data.SQLite.Core" Version="1.0.109" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GameInterface\GameInterface.csproj" />
     <ProjectReference Include="..\MixLibrary\MixLibrary.csproj" />
   </ItemGroup>
 
