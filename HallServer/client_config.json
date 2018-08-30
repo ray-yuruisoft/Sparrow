@@ -1,0 +1,121 @@
+{
+  "Version": [
+    {
+      "id": 1,
+      "VersionMax": 1,
+      "VersionMin": 0,
+      "IosAuditVersion": 0,
+      "GameSwebsite": "http://www.ida888.com/",
+      "packageZipUrl": "http://192.168.0.109:9123/HotUpdate/",
+      "subGameZipUrl": "http://192.168.0.109:9123/DownloadSubGame/",
+      "UseAppVest": 1
+    }
+  ],
+  "ShopConfig": [
+
+    {
+      "needMoney": 1,
+      "img": "10w.png",
+      "sale": "10",
+      "desc": "10",
+      "pay": 13
+    },
+    {
+      "needMoney": 50,
+      "img": "50w.png",
+      "sale": "10",
+      "desc": "50",
+      "pay": 13
+    },
+    {
+      "needMoney": 100,
+      "img": "100w.png",
+      "sale": "15",
+      "desc": "100",
+      "pay": 13
+    },
+    {
+      "needMoney": 200,
+      "img": "200w.png",
+      "sale": "15",
+      "desc": "200",
+      "pay": 13
+    },
+    {
+      "needMoney": 500,
+      "img": "500w.png",
+      "sale": "sale_15%.png",
+      "desc": "500",
+      "pay": 13
+    },
+    {
+      "needMoney": 1000,
+      "img": "1000w.png",
+      "sale": "15",
+      "desc": "1000",
+      "pay": 13
+    }
+  ],
+  "OpenConfig": [
+    {
+      "ID": 1,
+      "AttrKey": "shop",
+      "AttrName": "商店",
+      "Open": true,
+      "AuditOpen": true
+    },
+    {
+      "ID": 2,
+      "AttrKey": "bank",
+      "AttrName": "银行",
+      "Open": true,
+      "AuditOpen": true
+    },
+    {
+      "ID": 3,
+      "AttrKey": "transfer",
+      "AttrName": "转账",
+      "Open": true,
+      "AuditOpen": true
+    },
+    {
+      "ID": 4,
+      "AttrKey": "activity",
+      "AttrName": "活动",
+      "Open": true,
+      "AuditOpen": true
+    },
+    {
+      "ID": 5,
+      "AttrKey": "pay",
+      "AttrName": "支付",
+      "Open": true,
+      "AuditOpen": true
+    },
+    {
+      "ID": 6,
+      "AttrKey": "ranking",
+      "AttrName": "排行榜",
+      "Open": true,
+      "AuditOpen": false
+    },
+    {
+      "ID": 7,
+      "AttrKey": "gonggao",
+      "AttrName": "公告",
+      "Open": true,
+      "AuditOpen": false
+    }
+  ],
+
+  "UpdateInfo": {
+    "Message": "检测到新版本，请下载最新版本。"
+  },
+  "ServerNotice": [
+    {
+      "Type": 1,
+      "Message": "欢迎来到大澳娱乐城！"
+    }
+  ]
+
+}

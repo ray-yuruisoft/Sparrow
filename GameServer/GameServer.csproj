@@ -34,4 +34,10 @@
     <ProjectReference Include="..\MixLibrary\MixLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+	<Server 对外IP="192.168.1.33" 端口="7000" 心跳检测时间="20" />
+	<DB DB参数="server=127.0.0.1;user=root;password=123456;port=3306;IgnorePrepare=false;Pooling=false;"/>
+	<Worker 数量="32" />
+	<Other SupportGames=""/>
+</Root>

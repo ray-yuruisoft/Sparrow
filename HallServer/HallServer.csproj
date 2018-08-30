@@ -33,4 +33,13 @@
     <ProjectReference Include="..\MixLibrary\MixLibrary.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="client_config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Config.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
